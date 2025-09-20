@@ -7,3 +7,27 @@ body {
 h1 {
   color: #333;
 }
+#gameWindow {
+  position: relative;
+  background: brown;
+  width: 600px;
+  height: 400px;
+  box-shadow: 0 0 10px #000;
+  margin: 20px auto; /* center horizontally */
+}
+
+#exitFullscreenBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
+  line-height: 24px;
+  text-align: center;
+  user-select: none;
+  display: none; /* hide by default */
+}

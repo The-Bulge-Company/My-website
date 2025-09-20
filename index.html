@@ -1,36 +1,110 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2566">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Bulge Company</title>
+  <style>
+    /* Page and layout setup */
+    body, html {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: #333333;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Page title at top */
+    #pageTitle {
+      color: yellow;
+      text-align: center;
+      margin: 20px 0 10px 0;
+      font-family: Arial, sans-serif;
+      font-size: 2em;
+    }
+
+    /* Container to center game window */
+    #gameContainer {
+      flex: 1; /* take up all space below the title */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Brown game window */
+    #gameWindow {
+      background: brown;
+      width: 600px;
+      height: 400px;
+      position: relative;
+      box-shadow: 0 0 10px #000;
+      cursor: pointer;
+    }
+
+    /* Exit fullscreen red button */
+    #exitFullscreenBtn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: bold;
+      color: red;
+      line-height: 24px;
+      text-align: center;
+      user-select: none;
+      display: none;
+      background: white;
+      border-radius: 4px;
+    }
   </style>
 </head>
+
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;My Website&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="stylesheet" href="style.css"&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1&gt;Hello from TextEdit!&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;p&gt;This is styled with CSS.&lt;/p&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+  <!-- Title at top -->
+  <h1 id="pageTitle">The Bulge Company</h1>
+
+  <!-- Game window centered in remaining space -->
+  <div id="gameContainer">
+    <div id="gameWindow" title="Click to go fullscreen">
+      <div id="exitFullscreenBtn" title="Exit Fullscreen">&times;</div>
+    </div>
+  </div>
+
+  <!-- JavaScript at end of body -->
+  <script>
+    const gameWindow = document.getElementById('gameWindow');
+    const exitBtn = document.getElementById('exitFullscreenBtn');
+
+    // Enter fullscreen on click
+    gameWindow.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        gameWindow.requestFullscreen();
+        exitBtn.style.display = 'block';
+      }
+    });
+
+    // Exit fullscreen on red ×
+    exitBtn.addEventListener('click', (e) => {
+      e.stopPropagation(); // prevent re-entering fullscreen
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+        exitBtn.style.display = 'none';
+      }
+    });
+
+    // Hide exit button when user exits fullscreen (ESC, etc.)
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) {
+        exitBtn.style.display = 'none';
+      }
+    });
+  </script>
+
 </body>
 </html>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Inline Style Test</title>
-</head>
-<body style="background-color: #333333; text-align: center; padding: 50px;">
-  <h1 style="color: yellow;">The Bulge Company</h1>
-  <p style="font-size: 18px; color: #555;">The background color and text color are set directly in the HTML.</p>
-</body>
-</html>
+
